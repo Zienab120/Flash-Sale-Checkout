@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('hold_id')->constrained('holds')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
 
             $table->enum('status', ['prepayment', 'paid', 'cancelled'])->default('prepayment');
-            
+
+            $table->decimal('total_price', 8, 2);
+
             $table->timestamps();
         });
     }
